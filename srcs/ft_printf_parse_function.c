@@ -6,7 +6,7 @@
 /*   By: mmervoye <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/27 20:11:49 by mmervoye          #+#    #+#             */
-/*   Updated: 2018/09/27 21:43:07 by mmervoye         ###   ########.fr       */
+/*   Updated: 2018/09/28 14:17:40 by mmervoye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void				get_precision(t_infos *infos, t_options *opt, char *format)
 	if (format[infos->index] != '.')
 		return ;
 	nb = 0;
-	i = infos->index;
+	i = infos->index + 1;
 	while (ft_isdigit(format[i]))
 	{
 		if (nb)
@@ -73,4 +73,32 @@ void				get_precision(t_infos *infos, t_options *opt, char *format)
 	opt->precision = nb;
 	infos->index = i;
 
+}
+
+void				get_length_modifier(t_infos *infos, t_options *opt, char *format)
+{
+	infos->index -= 1;
+	while (format[++(infos->index)])
+	{
+		if (format[infos->index] == 'l' && format[infos->index + 1] != 'l')
+			opt->opt_l = 1;
+		else if (format[infos->index] == 'l' && format[infos->index + 1] == 'l')
+		{
+			opt->opt_ll = 1;
+			infos->index++;
+		}
+		else if (format[infos->index] == 'h' && format[infos->index + 1] != 'h')
+		{
+			opt->opt_h = 1;
+			infos->index++;
+		}
+		else if (format[infos->index] == 'h' && format[infos->index + 1] == 'h')
+			opt->opt_hh = 1;
+		else if (format[infos->index] == 'j')
+			opt->opt_j = 1;
+		else if (format[infos->index] == 'z')
+			opt->opt_z = 1;
+		else
+			break ;
+	}
 }

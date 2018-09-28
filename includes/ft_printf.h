@@ -6,7 +6,7 @@
 /*   By: mmervoye <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/27 16:47:53 by mmervoye          #+#    #+#             */
-/*   Updated: 2018/09/27 21:24:14 by mmervoye         ###   ########.fr       */
+/*   Updated: 2018/09/28 14:44:13 by mmervoye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,12 @@ typedef struct			s_options
 	int					opt_hashtag;
 	int					field_width;
 	int					precision;
+	int					opt_l;
+	int					opt_ll;
+	int					opt_h;
+	int					opt_hh;
+	int					opt_j;
+	int					opt_z;
 }						t_options;
 
 typedef struct			s_dispatch
@@ -50,11 +56,15 @@ char		get_pf_field_char(t_options *opt);
 void		get_opt(t_infos *infos, t_options *opt, char *format);
 void		get_field(t_infos *infos, t_options *opt, char *format);
 void		get_precision(t_infos *infos, t_options *opt, char *format);
+void		get_length_modifier(t_infos *infos, t_options *opt, char *format);
 int			pf_conv_integer(t_options *opt, t_infos *infos, char *buffer);
 int			pf_conv_hexa(t_options *opt, t_infos *infos, char *buffer);
+int			pf_conv_binary(t_options *opt, t_infos *infos, char *buffer);
+int			pf_insert_precision
+			(int precision, int len, t_infos *infos, char *buffer);
 void		printf_dispatch
-(t_infos *infos, t_options *opt, char *format, char *buffer);
+			(t_infos *infos, t_options *opt, char *format, char *buffer);
 int			conv_pf_numeric
-(t_options *opt, t_infos *infos, char *buffer, int base);
+			(t_options *opt, t_infos *infos, char *buffer, int base);
 
 #endif

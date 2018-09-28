@@ -6,7 +6,7 @@
 /*   By: mmervoye <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/27 18:52:50 by mmervoye          #+#    #+#             */
-/*   Updated: 2018/09/27 21:47:37 by mmervoye         ###   ########.fr       */
+/*   Updated: 2018/09/28 14:48:35 by mmervoye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,12 +47,14 @@ int				conv_pf_numeric
 		opt->field_width--;
 		infos->buf_index++;
 	}
+	opt->field_width -= opt->precision - len > 0 ? opt->precision - len : 0;
 	while (opt->opt_minus == 0 && len < opt->field_width)
 	{
 		buffer[infos->buf_index] = get_pf_field_char(opt);
 		opt->field_width--;
 		infos->buf_index++;
 	}
+	pf_insert_precision(opt->precision, len, infos, buffer);
 	infos->buf_index += insert_nb_buffer(opt, buffer, tab, infos);
 	return (0);
 }

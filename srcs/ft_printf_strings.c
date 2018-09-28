@@ -1,23 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_printf_strings.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmervoye <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/27 16:45:28 by mmervoye          #+#    #+#             */
-/*   Updated: 2018/09/28 15:44:30 by mmervoye         ###   ########.fr       */
+/*   Created: 2018/09/28 15:27:47 by mmervoye          #+#    #+#             */
+/*   Updated: 2018/09/28 15:44:47 by mmervoye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include "libft.h"
-#include <stdio.h>
 
-int					main(void)
+int						ps_insert_string()
 {
-	char		str[] = ">>% 04.5d<<\n";
-	ft_printf(str, 42); 
-	printf("%1.42s\n", "bonjour");
 	return (0);
 }
