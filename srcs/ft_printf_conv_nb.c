@@ -6,7 +6,7 @@
 /*   By: mmervoye <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/15 14:44:44 by mmervoye          #+#    #+#             */
-/*   Updated: 2018/10/16 14:06:10 by mmervoye         ###   ########.fr       */
+/*   Updated: 2018/10/22 16:54:50 by mmervoye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int					conv_octal_maj(t_infos *infos)
 {
 	uintmax_t		tmp;
 
-	tmp = get_good_ucast(infos);
+	tmp = va_arg(*(infos->ap), unsigned long);
 	insert_nb(tmp, infos, 8, 1);
 	infos->buf_index = ft_strlen(infos->buffer);
 	infos->index++;

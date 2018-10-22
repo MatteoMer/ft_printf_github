@@ -6,7 +6,7 @@
 /*   By: mmervoye <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/15 14:05:51 by mmervoye          #+#    #+#             */
-/*   Updated: 2018/10/19 13:21:12 by mmervoye         ###   ########.fr       */
+/*   Updated: 2018/10/22 18:21:40 by mmervoye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ static int			init_dispatch_2(t_dispatch *dispatch)
 	dispatch[13].ptr = conv_strings;
 	dispatch[14].character = 'C';
 	dispatch[14].ptr = conv_unicode_character;
+	dispatch[15].character = 'S';
+	dispatch[15].ptr = conv_unicode_str;
 	return (0);
 }
 
@@ -55,17 +57,21 @@ static int			init_dispatch(t_dispatch *dispatch)
 
 int					do_conv(t_infos *infos)
 {
-	t_dispatch		dispatch[15];
+	t_dispatch		dispatch[16];
 	int				i;
 	int				ret;
 
+	ret = 0;
 	i = -1;
 	init_dispatch((t_dispatch *)&dispatch);
 	infos->is_unsigned = 0;
-	while (++i < 15)
+	while (++i < 16)
 		if (dispatch[i].character == infos->format[infos->index])
 			return (dispatch[i].ptr(infos));
-	ret = insert_char(infos->format[infos->index], infos);
-	infos->index++;
+	if (infos->format[infos->index] != 0)
+	{
+		ret = insert_char(infos->format[infos->index], infos);
+		infos->index++;
+	}
 	return (ret);
 }

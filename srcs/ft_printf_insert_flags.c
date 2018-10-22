@@ -6,7 +6,7 @@
 /*   By: mmervoye <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/19 11:34:26 by mmervoye          #+#    #+#             */
-/*   Updated: 2018/10/19 12:53:21 by mmervoye         ###   ########.fr       */
+/*   Updated: 2018/10/22 18:14:55 by mmervoye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,8 @@ static int		useful_insert_hashtag(t_infos *infos, int base, int maj, int nb)
 	{
 		if (infos->tmp_str[0] != '0')
 		{
+			if (infos->options->precision > 0)
+				return (0);
 			ft_strcat(infos->buffer, "0");
 			infos->buf_index++;
 			infos->total_ret++;

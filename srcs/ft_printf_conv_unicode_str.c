@@ -1,27 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_printf_conv_unicode_str.c                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmervoye <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/10/15 10:20:22 by mmervoye          #+#    #+#             */
-/*   Updated: 2018/10/19 13:34:20 by mmervoye         ###   ########.fr       */
+/*   Created: 2018/10/22 15:47:54 by mmervoye          #+#    #+#             */
+/*   Updated: 2018/10/22 16:16:03 by mmervoye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-# include <locale.h>
-# include <limits.h>
 
-int					main(int argc, char **argv)
+int					conv_unicode_str(t_infos *infos)
 {
-	int			ret1;
-	int			ret2;
-	char		str = "coucou";
-	
-	//ft_printf("%.0p, %.p\n", str, str);
-	setlocale(LC_ALL, "");
-	ft_printf("%C\n", L"😃");
+	wchar_t		*str;
+
+	str = va_arg(*(infos->ap), wchar_t *);
+	if (!str)
+		str = L"(null)";
+	insert_unicode_str(infos, str);
+	infos->index++;
 	return (0);
 }

@@ -6,7 +6,7 @@
 #    By: mmervoye <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/07 14:06:35 by mmervoye          #+#    #+#              #
-#    Updated: 2018/10/19 13:30:48 by mmervoye         ###   ########.fr        #
+#    Updated: 2018/10/22 16:27:52 by mmervoye         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -96,8 +96,11 @@ SRCS = ./libft/srcs/ft_atoi.c \
 	  ./srcs/ft_printf_launch.c\
 	  ./srcs/ft_printf_lltoa_base.c\
 	  ./srcs/ft_printf_misc.c\
+	  ./srcs/ft_printf_misc_2.c\
 	  ./srcs/ft_printf_percent.c\
-	  ./srcs/ft_printf_pointer_conv.c
+	  ./srcs/ft_printf_pointer_conv.c\
+	  ./srcs/ft_printf_conv_unicode_str.c\
+	  ./srcs/ft_printf_insert_unicode_str.c
 
 
 OBJS = $(SRCS:.c=.o)

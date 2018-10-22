@@ -6,7 +6,7 @@
 /*   By: mmervoye <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/16 15:37:27 by mmervoye          #+#    #+#             */
-/*   Updated: 2018/10/16 16:23:31 by mmervoye         ###   ########.fr       */
+/*   Updated: 2018/10/22 17:16:21 by mmervoye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ int					conv_character(t_infos *infos)
 		infos->index++;
 		return (insert_char(c, infos));
 	}
-	infos->index++;
+	else
+		conv_unicode_character(infos);
 	return (0);
 }
 
@@ -36,6 +37,7 @@ int					conv_strings(t_infos *infos)
 		infos->index++;
 		return (insert_string(s, infos));
 	}
-	infos->index++;
+	else
+		conv_unicode_str(infos);
 	return (0);
 }

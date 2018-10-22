@@ -6,7 +6,7 @@
 /*   By: mmervoye <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/15 10:18:48 by mmervoye          #+#    #+#             */
-/*   Updated: 2018/10/19 14:01:44 by mmervoye         ###   ########.fr       */
+/*   Updated: 2018/10/22 18:23:22 by mmervoye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,28 +18,13 @@
 # include <wchar.h>
 # include <locale.h>
 
-# ifndef PRINTF_WC_MASK_0
-#  define PRINTF_WC_MASK_0	0b000000000000001111111
-# endif
-# ifndef PRINTF_WC_MASK_1
-#  define PRINTF_WC_MASK_1	0b000000000000000111111
-# endif
-# ifndef PRINTF_WC_MASK_2
-#  define PRINTF_WC_MASK_2	0b000000000011111000000
-# endif
-# ifndef PRINTF_WC_MASK_3
-#  define PRINTF_WC_MASK_3	0b000000000111111000000
-# endif
-# ifndef PRINTF_WC_MASK_4
-#  define PRINTF_WC_MASK_4	0b000001111000000000000
-# endif
-# ifndef PRINTF_WC_MASK_5
-#  define PRINTF_WC_MASK_5	0b000111111000000000000
-# endif
-# ifndef PRINTF_WC_MASK_6
-#  define PRINTF_WC_MASK_6	0b111000000000000000000
-# endif
-
+# define PRINTF_WC_MASK_0	0b000000000000001111111
+# define PRINTF_WC_MASK_1	0b000000000000000111111
+# define PRINTF_WC_MASK_2	0b000000000011111000000
+# define PRINTF_WC_MASK_3	0b000000000111111000000
+# define PRINTF_WC_MASK_4	0b000001111000000000000
+# define PRINTF_WC_MASK_5	0b000111111000000000000
+# define PRINTF_WC_MASK_6	0b111000000000000000000
 
 typedef struct			s_options
 {
@@ -86,6 +71,9 @@ void					init_opt(t_options *options);
 uintmax_t				get_good_cast(t_infos *infos);
 uintmax_t				get_good_ucast(t_infos *infos);
 int						insert_field(t_infos *infos);
+int						insert_wchar(t_infos *infos, wchar_t c);
+int						ft_wstrlen(wchar_t *wstr);
+int						ft_wcharlen(wchar_t c);
 void					fpf_llota_base(uintmax_t nb, t_infos *infos, int base\
 , int maj);
 
@@ -101,6 +89,7 @@ int						insert_string(char *s, t_infos *infos);
 int						insert_hashtag(t_infos *infos, int base, int maj\
 , int nb);
 int						insert_unicode_char(t_infos *infos, wchar_t c);
+int						insert_unicode_str(t_infos *infos, wchar_t *str);
 int						conv_unicode_character(t_infos *infos);
 int						insert_flags(t_infos *infos, int base);
 int						conv_octal_maj(t_infos *infos);
@@ -115,5 +104,6 @@ int						conv_pointer(t_infos *infos);
 int						conv_strings(t_infos *infos);
 int						conv_udecimal_upper(t_infos *infos);
 int						conv_udecimal(t_infos *infos);
+int						conv_unicode_str(t_infos *infos);
 
 #endif

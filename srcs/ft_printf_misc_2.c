@@ -1,23 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_conv_unicode_char.c                      :+:      :+:    :+:   */
+/*   ft_printf_misc_2.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmervoye <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/10/19 13:21:27 by mmervoye          #+#    #+#             */
-/*   Updated: 2018/10/22 14:59:50 by mmervoye         ###   ########.fr       */
+/*   Created: 2018/10/22 16:20:22 by mmervoye          #+#    #+#             */
+/*   Updated: 2018/10/22 16:21:33 by mmervoye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int				conv_unicode_character(t_infos *infos)
+int					ft_wcharlen(wchar_t c)
 {
-	wchar_t		tmp;
+	unsigned int	tmp;
 
-	tmp = va_arg(*(infos->ap), wchar_t);
-	insert_unicode_char(infos, tmp);
-	infos->index++;
-	return (0);
+	tmp = ft_numlen_base(c, 2);
+	if (tmp < 8)
+		return (1);
+	else if (tmp < 12)
+		return (2);
+	else if (tmp < 17)
+		return (3);
+	else
+		return (4);
 }

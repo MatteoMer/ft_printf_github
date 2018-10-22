@@ -6,7 +6,7 @@
 /*   By: mmervoye <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/19 12:42:40 by mmervoye          #+#    #+#             */
-/*   Updated: 2018/10/19 12:42:55 by mmervoye         ###   ########.fr       */
+/*   Updated: 2018/10/22 18:23:42 by mmervoye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,9 @@ uintmax_t				get_good_ucast(t_infos *infos)
 	else if (flags_l[0] == 'l' && flags_l[1] == 'l')
 		return (va_arg(*(infos->ap), unsigned long long));
 	else if (flags_l[0] == 'h' && flags_l[1] == 'h')
-		return ((char)va_arg(*(infos->ap), unsigned int));
+		return ((unsigned char)va_arg(*(infos->ap), unsigned int));
 	else if (flags_l[0] == 'h' && flags_l[1] == 0)
-		return ((short)va_arg(*(infos->ap), unsigned int));
+		return ((unsigned short)va_arg(*(infos->ap), unsigned int));
 	else if (flags_l[0] == 'z' && flags_l[1] == 0)
 		return (va_arg(*(infos->ap), size_t));
 	else if (flags_l[0] == 'j' && flags_l[1] == 0)
@@ -84,4 +84,33 @@ options->opt_zero == 1 ? '0' : ' ';
 	infos->buf_index = infos->total_ret;
 	infos->options->field_width = 0;
 	return (0);
+}
+
+int						insert_wchar(t_infos *infos, wchar_t c)
+{
+	infos->buffer[infos->buf_index] = c;
+	infos->buf_index++;
+	infos->total_ret++;
+	return (0);
+}
+
+int						ft_wstrlen(wchar_t *wstr)
+{
+	int				len;
+	unsigned int	tmp;
+
+	len = 0;
+	while (*wstr)
+	{
+		tmp = ft_numlen_base(*wstr++, 2);
+		if (tmp < 8)
+			len += 1;
+		else if (tmp < 12)
+			len += 2;
+		else if (tmp < 17)
+			len += 3;
+		else
+			len += 4;
+	}
+	return (len);
 }
